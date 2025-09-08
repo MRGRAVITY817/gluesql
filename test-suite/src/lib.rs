@@ -15,6 +15,7 @@ pub mod concat;
 pub mod custom_function;
 pub mod data_type;
 pub mod default;
+pub mod executor;
 pub mod delete;
 pub mod dictionary;
 pub mod dictionary_index;
@@ -275,6 +276,13 @@ macro_rules! generate_store_tests {
         glue!(function_splice, function::splice::splice);
         glue!(function_dedup, function::dedup::dedup);
 
+        // executor error testing
+        glue!(vector_function_error_cases, executor::vector_error_cases::vector_function_error_cases);
+        glue!(vector_function_edge_cases, executor::vector_error_cases::vector_function_edge_cases);
+        glue!(vector_function_null_handling, executor::vector_error_cases::vector_function_null_handling);
+        glue!(vector_function_type_coercion_errors, executor::vector_error_cases::vector_function_type_coercion_errors);
+        glue!(vector_function_complex_error_scenarios, executor::vector_error_cases::vector_function_complex_error_scenarios);
+
         // ast-builder
         glue!(ast_builder_basic, ast_builder::basic::basic);
         glue!(
@@ -362,6 +370,10 @@ macro_rules! generate_store_tests {
         glue!(
             ast_builder_function_text_position_and_indexing,
             ast_builder::function::text::position_and_indexing
+        );
+        glue!(
+            ast_builder_function_vector_functions_ast,
+            ast_builder::function::vector::vector_functions_ast
         );
         glue!(ast_builder_index_by, ast_builder::index_by::index_by);
         glue!(
